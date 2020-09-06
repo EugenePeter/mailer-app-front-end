@@ -110,7 +110,7 @@ export const MiddleBar = styled.div`
     flex-shrink: 1;
     flex-basis: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #f9fcfd;
     overflow: scroll;
 
     @media screen and (min-width: 992px) {
