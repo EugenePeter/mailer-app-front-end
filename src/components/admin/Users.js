@@ -62,6 +62,31 @@ const AllUsers = ({ details }) => {
 
     return (
         <StripContainer>
+            {/* <Strip>
+                <Wrapper>
+                    <h5>{first_name} </h5>
+                </Wrapper>
+                <Wrapper>
+                    <h5>Email</h5>
+                    <small>{email_address} </small>
+                </Wrapper>
+                <Wrapper>
+                    <h5>Role</h5>
+                    <small>{role} </small>
+                </Wrapper>
+                <Wrapper>
+                    <h5>active</h5>
+                 <SwitchToggle handleChange={toggleCheck} checked={toggle} />
+                </Wrapper>
+                <Wrapper>
+                    <View onClick={handleNewPassword}><small>change password</small></View>
+                </Wrapper>
+                <Wrapper>
+                    <View onClick={handleDelete}><small>delete</small></View>
+                </Wrapper>
+            </Strip> 
+            */}
+
             <Strip>
                 <Wrapper>
                     <h5>first name</h5>
