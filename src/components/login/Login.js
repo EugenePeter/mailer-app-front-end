@@ -14,8 +14,9 @@ import {
     ErrorMessage,
 } from "../../global-styles/form.styles";
 
-import { GlobalButton } from "../../global-styles/button.styles"
-import {loginStart} from '../../redux/login/login.action'
+import { GlobalButton } from "../../global-styles/button.styles";
+import {loginStart} from '../../redux/login/login.action';
+import { authStart } from '../../redux/authenticate-users/actions'
 
 
 function Login(props) {
@@ -31,6 +32,10 @@ const dispatch = useDispatch()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    // useEffect(() => {
+    //     dispatch(authStart())
+    // }, [])
 
     const test = useParams;
 

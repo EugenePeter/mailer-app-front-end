@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import SwitchToggle from '../switch-toggle/SwitchToggle';
 
 import {
     Strip,
@@ -21,11 +22,18 @@ const AllUsers = ({details}) => {
 
     const [toggle, setToggle] = useState(false)
     const toggleCheck = () => setToggle(value => !value)
+
     console.log(toggle)
+    
     const handleChange = (e) => {
         const {value} = e.target
         setToggle(!value)
         console.log(value)
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        alert()
     }
 
 
@@ -51,10 +59,14 @@ const AllUsers = ({details}) => {
                         </ToggleContainer>
                     </Wrapper> */}
                     <Wrapper>
+                        <h5>active</h5>
+                     <SwitchToggle handleChange={toggleCheck} checked={toggle} />
+                    </Wrapper>
+                    <Wrapper>
                         <View><small>change password</small></View>
                     </Wrapper>
                     <Wrapper>
-                        <View><small>delete</small></View>
+                        <View onClick={handleDelete}><small>delete</small></View>
                     </Wrapper>
                 </Strip>
             </StripContainer>

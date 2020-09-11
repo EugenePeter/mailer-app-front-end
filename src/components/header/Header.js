@@ -13,7 +13,7 @@ const Header = () => {
                 <Blocks>
                     <HeaderTextContainer>
                         <h1>MAILER PRO</h1>
-                        <h3>Designed and developed by team DNA Micro.</h3>
+                        <h3>Designed and developed by team QUANRANTEAM.</h3>
                     </HeaderTextContainer>
                 </Blocks>
                 <Blocks>

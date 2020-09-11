@@ -1,7 +1,8 @@
 import { SendMailTypes } from './types'
 
 const INITIAL_STATE = {
-    sending_message: false
+    sending_message: false,
+    message_sent: false
 }
 
 const sendEmailReducer = (state = INITIAL_STATE, action) => {
@@ -16,8 +17,8 @@ const sendEmailReducer = (state = INITIAL_STATE, action) => {
             console.log("aaaaaaaa", action)
             return {
                 ...state,
-                ...action.payload,
-                sending_message: false
+                sending_message: false,
+                message_sent: true
         }
         default:
             return state

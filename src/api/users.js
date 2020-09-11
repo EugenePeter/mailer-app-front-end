@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 export const create = async (value) => {
     console.log("/////////value from add users")
     console.log(value)
@@ -41,8 +42,8 @@ export const auth = async (value) => {
     // const result = await axios.get(`http://10.111.2.65:7676/auth`,{
     //     withCredentials: true
     // })
+    // const socket = io(`http://10.111.2.100:3000?access_token=${token}`);
 
-    console.log(result)
     return result;
 }
 

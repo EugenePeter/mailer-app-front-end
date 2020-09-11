@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Headline,
@@ -21,9 +21,11 @@ import {getEmailsStart} from '../../redux/get-emails/action';
 const LeftSideBarInner = () => {
     const dispatch = useDispatch()
     const details =  useSelector(state => state.auth.user)
-    const socket =  useSelector(state => state.loginDetails.socket)
+    const socket =  useSelector(state => state.loginDetails.sockets)
 
-    console.log("eeeeeeeee", details)
+    // const state = useSelector(state => state.loginDetails)
+
+    console.log("eeeeeeeee", socket)
     const { role } = {...details};
 
     const handleClick = () => {
@@ -39,7 +41,12 @@ const LeftSideBarInner = () => {
             console.log(data)
         })
     }
+    
+    useEffect(() => {
+        dispatch(getEmailsStart())
+    },[])
 
+    
     return (
        <>
             <Headline>

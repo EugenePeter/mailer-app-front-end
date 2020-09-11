@@ -9,11 +9,11 @@ export const loginStart = (value) => {
     console.log(value)
     return async (dispatch, getState) => {
         const result = await login(value)
-        console.log("cccccccc", value)
+        // console.log('s@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', value)
 
         const socket = io(`http://10.111.2.100:3000?access_token=${result.data.token}`);
         // socket.connect();
- 
+        console.log(result.data ,'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
        dispatch(loginSuccess({...result.data, socket}));
     };
 }
