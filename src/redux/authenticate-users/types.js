@@ -1,0 +1,5 @@
+export const AuthTypes = {
+    AUTH_START: "AUTH_START",
+    AUTH_SUCCESS: "AUTH_SUCCESS",
+    AUTH_FAILURE: "AUTH_FAILURE",
+}

@@ -1,0 +1,5 @@
+export const GetRoleTypes = {
+    GET_ROLE_START: "GET_ROLE_START",
+    GET_ROLE_SUCCESS: "GET_ROLE_SUCCESS",
+    GET_ROLE_FAILURE: "GET_ROLE_FAILURE",
+}
