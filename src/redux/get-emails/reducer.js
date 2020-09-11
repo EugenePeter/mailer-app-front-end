@@ -23,3 +23,4 @@ const getEmailsReducer = (state = INITIAL_STATE, action) => {
 }
 
 export default getEmailsReducer
+
