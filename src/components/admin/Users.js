@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useDispatch , useSelector} from 'react-redux';
 
 import {Link} from 'react-router-dom';
 import SwitchToggle from '../switch-toggle/SwitchToggle';
@@ -14,9 +15,14 @@ import {
     ToggleContainer
 } from "./Users.styles";
 
-const AllUsers = ({details}) => {
+import { deleteUserStart } from '../../redux/delete-user/action';
+import {deleteUser} from '../../redux/get-user/action'
 
-    const { first_name, email_address, role} = details;
+const AllUsers = ({details}) => {
+    const dispatch = useDispatch()
+    const { first_name, email_address, id, role} = details;
+    const socket = useSelector(state => state.loginDetails.sockets)
+    const userType = useSelector(state => state.loginDetails.role)
 
     console.log("/////////", details)
 
@@ -24,17 +30,24 @@ const AllUsers = ({details}) => {
     const toggleCheck = () => setToggle(value => !value)
 
     console.log(toggle)
+
+    const handleNewPassword = () => {
+        
+    }
     
-    const handleChange = (e) => {
-        const {value} = e.target
-        setToggle(!value)
-        console.log(value)
+    const handleDelete = async () => {
+        console.log(id)
+       await dispatch(deleteUserStart(id))
+       dispatch(deleteUser(id))
+       socket.emit("delete_user", {
+        user_data: details,
+        role: userType
+       })
     }
 
-    const handleDelete = (e) => {
-        e.preventDefault()
-        alert()
-    }
+
+
+
 
 
     return (
@@ -51,19 +64,12 @@ const AllUsers = ({details}) => {
                         <h5>Role</h5>
                         <small>{role} </small>
                     </Wrapper>
-                    {/* <Wrapper>
-                        <ToggleContainer>
-                            <h5>Action</h5>
-                            <Toggle type="checkbox" onChange={toggleCheck} id="switch" checked={toggle}/>
-                            <Label for="switch">Toggle</Label>
-                        </ToggleContainer>
-                    </Wrapper> */}
                     <Wrapper>
                         <h5>active</h5>
                      <SwitchToggle handleChange={toggleCheck} checked={toggle} />
                     </Wrapper>
                     <Wrapper>
-                        <View><small>change password</small></View>
+                        <View onClick={handleNewPassword}><small>change password</small></View>
                     </Wrapper>
                     <Wrapper>
                         <View onClick={handleDelete}><small>delete</small></View>

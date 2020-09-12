@@ -16,6 +16,7 @@ import {
 } from "../../components/bars/LeftSideBarInner.styles";
 
 import {getEmailsStart} from '../../redux/get-emails/action';
+import { newUsersSuccess, getUsers, deleteUser } from '../../redux/get-user/action'
 
 
 const LeftSideBarInner = () => {
@@ -31,6 +32,13 @@ const LeftSideBarInner = () => {
     const handleClick = () => {
         console.log("/////// im click")
         socket.on("new_user_registered", data => {
+            dispatch(getUsers())
+            dispatch(newUsersSuccess(data))
+            console.log(data)
+        })
+
+        socket.on("user_deleted", data => {
+            dispatch(deleteUser(data.id))
             console.log(data)
         })
     }

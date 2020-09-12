@@ -56,6 +56,17 @@ export const users = async (value) => {
     return result;
 }
 
+export const deleteUserAsync = async (id) => {
+    console.log("iddddddd", id)
+    const result = await axios.put('http://10.111.2.65:7676/users/remove', {id})
+    console.log(result)
+    return result;
+}
+
+export const updatePasswordAsync = (data) => {
+    const result = axios.put('http://10.111.2.65:7676/users/remove', {})
+}
+
 
 
 

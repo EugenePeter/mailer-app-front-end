@@ -9,6 +9,8 @@ import { EmailsContainer } from './Emails.styles';
 
 import { getUsers } from '../../redux/get-user/action';
 
+import {Wrapper} from './Users.styles'
+
 
 
 
@@ -42,6 +44,10 @@ const AdminPanel = () => {
             }
 
             </Route>
+            {/* <Wrapper>
+                <h5> update password </h5>
+                <input type="text" value="test" placeholder="update-password" />
+            </Wrapper> */}
         </Switch>
     )
 }
