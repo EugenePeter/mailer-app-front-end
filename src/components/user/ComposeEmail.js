@@ -25,7 +25,7 @@ const ComposeEmail = () => {
     const sending_message = useSelector((state) => state.email.sending_message);
     const message_sent = useSelector((state) => state.email.message_sent);
 
-    const { id } = { ...userId };
+    const { id, is_allowed } = { ...userId };
     const [state, setState] = useState({
         to: "",
         from: "",
@@ -34,6 +34,12 @@ const ComposeEmail = () => {
     });
 
     console.log("ussssseeer Id", id);
+
+    useEffect(() => {
+        socket.on("user_toggled", (data) => {
+            console.log("what toggled", data);
+        });
+    }, []);
 
     useEffect(() => {
         socket.on("email_status", async (data) => {
@@ -78,68 +84,74 @@ const ComposeEmail = () => {
     return (
         <>
             {sending_message === true && <LoaderCircle />}
-            <FormContainer>
-                {sending_message === false && (
-                    <>
-                        <Title>
-                            <h2>Email</h2>
-                        </Title>
-                        {message_sent === true && <h2>EMAIL SENT</h2>}
-                        <GroupContainer>
-                            <FormInput
-                                name="from"
-                                type="email"
-                                label="from"
-                                value={state.from}
-                                onChange={handleChange}
-                            />
-                            <ErrorMessage></ErrorMessage>
-                            <FormInputSpan value={state.from}>From</FormInputSpan>
-                        </GroupContainer>
-                        <GroupContainer>
-                            <FormInput
-                                name="to"
-                                type="email"
-                                label="to"
-                                value={state.to}
-                                onChange={handleChange}
-                            />
-                            <FormInputSpan value={state.to}>To</FormInputSpan>
-                        </GroupContainer>
-                        <GroupContainer>
-                            <FormInput
-                                name="subject"
-                                type="text"
-                                label="subject"
-                                value={state.subject}
-                                onChange={handleChange}
-                            />
-                            <FormInputSpan value={state.subject}>
-                                Subject
-                            </FormInputSpan>
-                        </GroupContainer>
-                        <GroupContainer>
-                            <FormTextArea
-                                name="body"
-                                type="textbox"
-                                label="body"
-                                rows="90"
-                                value={state.body}
-                                onChange={handleChange}
-                            />
-                            <FormInputSpan value={state.body}>
-                                {" "}
-                                Type email here
-                            </FormInputSpan>
-                        </GroupContainer>
-                        <ButtonWrapper>
-                            <GlobalButton onClick={handleSubmit} signin>
-                                Submit
-                            </GlobalButton>
-                        </ButtonWrapper>
-                    </>
-                )}
-            </FormContainer>
+            {is_allowed ? (
+                <FormContainer>
+                    {sending_message === false && (
+                        <>
+                            <Title>
+                                <h2>Email</h2>
+                            </Title>
+                            {message_sent === true && <h2>EMAIL SENT</h2>}
+                            <GroupContainer>
+                                <FormInput
+                                    name="from"
+                                    type="email"
+                                    label="from"
+                                    value={state.from}
+                                    onChange={handleChange}
+                                />
+                                <ErrorMessage></ErrorMessage>
+                                <FormInputSpan value={state.from}>From</FormInputSpan>
+                            </GroupContainer>
+                            <GroupContainer>
+                                <FormInput
+                                    name="to"
+                                    type="email"
+                                    label="to"
+                                    value={state.to}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSpan value={state.to}>To</FormInputSpan>
+                            </GroupContainer>
+                            <GroupContainer>
+                                <FormInput
+                                    name="subject"
+                                    type="text"
+                                    label="subject"
+                                    value={state.subject}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSpan value={state.subject}>
+                                    Subject
+                                </FormInputSpan>
+                            </GroupContainer>
+                            <GroupContainer>
+                                <FormTextArea
+                                    name="body"
+                                    type="textbox"
+                                    label="body"
+                                    rows="90"
+                                    value={state.body}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSpan value={state.body}>
+                                    {" "}
+                                    Type email here
+                                </FormInputSpan>
+                            </GroupContainer>
+                            <ButtonWrapper>
+                                <GlobalButton onClick={handleSubmit} signin>
+                                    Submit
+                                </GlobalButton>
+                            </ButtonWrapper>
+                        </>
+                    )}
+                </FormContainer>
+            ) : (
+                <p style={{ paddingTop: "100px" }}>
+                    Uhhh uhhh! Please contact administrator to access email composer!
+                </p>
+            )}
         </>
     );
 };

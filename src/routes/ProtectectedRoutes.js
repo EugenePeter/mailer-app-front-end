@@ -1,14 +1,14 @@
-import React from 'react';
-import {Route} from 'react-router-dom'
+import React, { useState } from "react";
+import { Route, Redirect } from "react-router-dom";
 
-const ProtectedRoutes = ({component: Component, ...rest}) => {
+const ProtectedRoutes = ({ component: Component, ...rest }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+
     return (
-        <Route 
-            {...rest}
-            render = {() => 
-            (<Component />)}
-        />
-    )
-}
+        <Route {...rest}>
+            {isAuthenticated ? <Component /> : <Redirect to="/" />}
+        </Route>
+    );
+};
 
 export default ProtectedRoutes;

@@ -21,10 +21,11 @@ import {
 import { deleteUserStart } from "../../redux/delete-user/action";
 import { deleteUser } from "../../redux/get-user/action";
 import { updatePasswordStart } from "../../redux/update-password/action";
+import { allowUserEmail } from "../../redux/allow-user/action";
 
 const AllUsers = ({ details }) => {
     const dispatch = useDispatch();
-    // const { first_name, email_address, id, role} = details;
+    // const { first_name, email_address, id, role, is_allowed} = details;
     const [newPassword, setNewPassword] = useState("");
     const socket = useSelector((state) => state.loginDetails.sockets);
     const userType = useSelector((state) => state.loginDetails.role);
@@ -32,7 +33,10 @@ const AllUsers = ({ details }) => {
     console.log("/////////", details);
 
     const [toggle, setToggle] = useState(false);
-    const toggleCheck = () => setToggle((value) => !value);
+    const toggleCheck = () => {
+        setToggle((value) => !value);
+        // dispatch(allowUserEmail({ id, allow_me: !toggle }));
+    };
 
     console.log(toggle);
 

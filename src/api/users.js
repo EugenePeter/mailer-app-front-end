@@ -70,3 +70,10 @@ export const updatePasswordAsync = (data) => {
 
     return result;
 };
+
+export const allowUser = (data) => {
+    console.log("/// api call - allow user", data);
+    const result = axios.put("http://localhost:7676/users", data);
+
+    return result;
+};
